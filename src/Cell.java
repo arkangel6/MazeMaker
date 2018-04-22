@@ -8,6 +8,8 @@ public class Cell {
 	private int x;
 	private int y;
 	
+	private String name;
+	
 	private int size = 100;
 	
 	private boolean visited;
@@ -46,6 +48,14 @@ public class Cell {
 		if(westWall){
 			g.drawLine((x * size) + X_MARGIN, (y * size) + Y_MARGIN, (x * size) + X_MARGIN, (y * size) + size + Y_MARGIN);
 		}
+		
+		
+		if(hasBeenVisited()) {
+			g.setColor(Color.BLACK);
+			g.drawString(getName(), (x * size) + (size / 2) + X_MARGIN, (y * size) + (size / 2) + Y_MARGIN);
+		}
+		
+		
 	}
 
 	public int getX() {
@@ -63,6 +73,39 @@ public class Cell {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	
+	public void setName(String n) {
+		name = n;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public boolean hasAllWalls() {
+		
+			int counter = 0;
+			if(hasEastWall()) {
+				counter++;
+			}
+			if(hasWestWall()) {
+				counter++;
+			}
+			if(hasNorthWall()) {
+				counter++;
+			}
+			if(hasSouthWall()) {
+				counter++;
+			}
+			if(counter == 4) {
+				return true;
+			}
+			
+			return false;
+		}
+	
+	
 
 	public boolean hasBeenVisited() {
 		return visited;
